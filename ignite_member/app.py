@@ -150,13 +150,15 @@ def connectsearch():
         #FOOTPRINT_SELECT_QUERY = "SELECT Name, Date, Place FROM Footprint WHERE ID = '" + phone +"'"
         #footprints = client.sql(FOOTPRINT_SELECT_QUERY)
         ##將確診者的資料匯入
-        CONFIRMED_SELECT_QUERY = "SELECT Name FROM Confirmed"
+        CONFIRMED_SELECT_QUERY = "SELECT Name, ID FROM Confirmed"
         confirmeds = client.sql(CONFIRMED_SELECT_QUERY)
         c = 0
         msg2 = '0'
         msg3 = ''
         ##交叉比對
         for row in confirmeds :
+            if row[1] == phone :
+                continue
             name = row[0]
             #date = row[1]
             INPUT_CASE = "SELECT Date, Place FROM Footprint WHERE Name = '" + name + "'"
