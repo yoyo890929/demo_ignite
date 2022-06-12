@@ -178,8 +178,8 @@ def diagnosedpage():
 
 @app.route("/diagnosed",methods=["POST"])
 def diagnosed():
-    name = request.form.get("name")
-    Date = request.form.get("date") #應該有12碼 xxxx_xxxx_xx
+    #name = request.form.get("name")
+    Date = request.form.get("date") #應該有9碼 xxxx_xxxx
     Place = request.form.get("place")
     phone = session["phone"]
     
@@ -188,9 +188,10 @@ def diagnosed():
     ACCOUNT_SELECT_QUERY = "SELECT Name FROM Account WHERE ID = '" + phone + "'"
     accounts = client.sql(ACCOUNT_SELECT_QUERY)
     for row in accounts :
-        if row[0] == name :
-            check_name = 1
-    if( check_name==1 and len(str(name))!=0 and len(str(Date))==12 and len(str(Place))!=0) :
+        name = row[0]
+    #    if row[0] == name :
+        check_name = 1
+    if( check_name==1 and len(str(name))!=0 and len(str(Date))==9 and len(str(Place))!=0) :
         r = random.randint(0, 100000000)
         FOOTPRINT_INSERT_QUERY = "INSERT INTO Footprint(Name, ID, Date , Place, key) VALUES ("
         FOOTPRINT_INSERT_QUERY += "\'" + name + "\', "
