@@ -10,7 +10,7 @@ name = input("通報確診者姓名 : ")
 account = input("通報確診者帳號(手機號碼) : ")
 date = input("通報時間: ")
 
-if( len(str(name))!=0 and len(str(date))==12 and len(str(account))==10 ) :
+if( len(str(name))!=0 and len(str(date))==9 and len(str(account))==10 ) :
     r = random.randint(0, 100000000)
     CONFIRMED_INSERT_QUERY = "INSERT INTO Confirmed(Name, ID, Date, key) VALUES ("
     CONFIRMED_INSERT_QUERY += "\'" + name + "\', "
