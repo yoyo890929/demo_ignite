@@ -78,6 +78,9 @@ def signuppage():
     password = request.form["password"]
     password_2 = request.form["password_2"]
     
+    if( len(str(phone))!=10 ) :
+        return render_template("signuppage.html",msg="手機格式不符!")
+
     #註冊
     #輸入電話及密碼、確認密碼(不得與其他手機號碼重複)
     #確認後將資料輸入到SQL
